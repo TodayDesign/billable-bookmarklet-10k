@@ -1,0 +1,11 @@
+{
+  "name": "utilisation-10k",
+  "version": "1.0.0",
+  "description": "A JS bookmarklet to tell you what percentage of your time in the given week is billable. Requires the browser to have the 10k time tracker open.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dan Laush <dan@today.design>",
+  "license": "ISC"
+}
