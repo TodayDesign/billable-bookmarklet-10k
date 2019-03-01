@@ -1,5 +1,12 @@
 (function() {
 
+  const runURL = 'https://app.10000ft.com/me/tracker'
+
+  if(window.location.href !== runURL) {
+    alert(`The 10k billable bookmarklet only runs on ${runURL}`)
+    return
+  }
+
   const data = [
     { // monday
       billable: 0,
@@ -24,22 +31,22 @@
   ]
 
   const projects = document.querySelectorAll('.tk-time-tracker-row')
-  console.log('projects', projects);
+  // console.log('projects', projects);
 
   for(i=0;i<projects.length;++i) {
     const days = projects[i].querySelectorAll('.tk-time-tracker-cel')
     
     for(j=0;j<days.length;++j) {
-      console.log('days', days[j].classList);
+      // console.log('days', days[j].classList);
       if(!days[j].classList.contains('empty')) {
         const hours = parseFloat(days[j].querySelector('.tk-hours').textContent)
-        console.log('hours', hours)
+        // console.log('hours', hours)
         if(days[j].classList.contains('grad-purple')) {
-          console.log(`unbillable work ${hours} hours`)
+          // console.log(`unbillable work ${hours} hours`)
           data[j].unbillable = Number(parseFloat(data[j].unbillable + hours).toFixed(1))
         }
         if(days[j].classList.contains('grad-blue')) {
-          console.log(`billable work ${hours} hours`)
+          // console.log(`billable work ${hours} hours`)
           data[j].billable = Number(parseFloat(data[j].billable + hours).toFixed(1))
         }
       }

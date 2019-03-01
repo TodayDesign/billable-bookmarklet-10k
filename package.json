@@ -4,8 +4,13 @@
   "description": "A JS bookmarklet to tell you what percentage of your time in the given week is billable. Requires the browser to have the 10k time tracker open.",
   "main": "index.js",
   "scripts": {
+    "build": "parcel build ./index.js -o dist/index.js --no-source-maps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dan Laush <dan@today.design>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "parcel": "^1.11.0"
+  }
 }
