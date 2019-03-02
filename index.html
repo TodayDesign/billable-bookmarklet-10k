@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>10k Utilisation bookmarklet</title>
+  <style type="text/css">
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .screenshot {
+      display: block;
+      max-width: 1000px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .add-bookmark {
+      max-width: 600px;
+    }
+
+    .edit-bookmark {
+      max-width: 400px;
+    }
+
+    #snippet {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+      clip: rect(1px, 1px, 1px, 1px);
+    }
+  </style>
+</head>
+<body>
+  <h1>10k billable ratio bookmarklet</h1>
+  <p>A simple tool to help you understand your current ratio of billable hours in a week, based on your <a href="https://10000ft.com/">10,000 feet</a> timesheets. </p>
+  <p>Follow the install instructions below, then <a href="https://app.10000ft.com/me/tracker">open the 10k tracker</a> and click on the bookmarklet to see a summary of your week.</p>
+  <img class="screenshot" src="docs/screenshot-1.jpg" alt="A screenshot of the 10k app showing the results of running the bookmarklet. An Alert window appears, listing your billable time for the week and for each day as a percentage" />
+  <h2>Step 1: Copy the code</h2>
+  <p><button onclick="handleClick()">Copy the JavaScript code</button> to your clipboard</p>
+  <textarea id="snippet">javascript:parcelRequire=function(e,r,n,t){var i="function"==typeof parcelRequire&&parcelRequire,o="function"==typeof require&&require;function u(n,t){if(!r[n]){if(!e[n]){var f="function"==typeof parcelRequire&&parcelRequire;if(!t&&f)return f(n,!0);if(i)return i(n,!0);if(o&&"string"==typeof n)return o(n);var c=new Error("Cannot find module '"+n+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[n][1][r]||r},p.cache={};var l=r[n]=new u.Module(n);e[n][0].call(l.exports,p,l,l.exports,this)}return r[n].exports;function p(e){return u(p.resolve(e))}}u.isParcelRequire=!0,u.Module=function(e){this.id=e,this.bundle=u,this.exports={}},u.modules=e,u.cache=r,u.parent=i,u.register=function(r,n){e[r]=[function(e,r){r.exports=n},{}]};for(var f=0;f<n.length;f++)u(n[f]);if(n.length){var c=u(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=c:"function"==typeof define&&define.amd?define(function(){return c}):t&&(this[t]=c)}return u}({"Focm":[function(require,module,exports) {
+    !function(){var l="https://app.10000ft.com/me/tracker";if(window.location.href===l){var e=[{billable:0,unbillable:0},{billable:0,unbillable:0},{billable:0,unbillable:0},{billable:0,unbillable:0},{billable:0,unbillable:0}],a=document.querySelectorAll(".tk-time-tracker-row");for(i=0;i<a.length;++i){var t=a[i].querySelectorAll(".tk-time-tracker-cel");for(j=0;j<t.length;++j)if(!t[j].classList.contains("empty")){var b=parseFloat(t[j].querySelector(".tk-hours").textContent);t[j].classList.contains("grad-purple")&&(e[j].unbillable=Number(parseFloat(e[j].unbillable+b).toFixed(1))),t[j].classList.contains("grad-blue")&&(e[j].billable=Number(parseFloat(e[j].billable+b).toFixed(1)))}}var n="Billable this week: ".concat(function(l){var e=0,a=0;for(i=0;i<l.length;++i)e=Number((e+l[i].billable).toFixed(1)),a=Number((a+(l[i].billable+l[i].unbillable)).toFixed(1));return"".concat(o(e,a),"% (").concat(e," / ").concat(a,")")}(e),"\nMon: ").concat(r(e[0]),"%; Tue: ").concat(r(e[1]),"%; Wed: ").concat(r(e[2]),"%; Thu ").concat(r(e[3]),"%; Fri ").concat(r(e[4]),"%;");alert(n)}else alert("The 10k billable bookmarklet only runs on ".concat(l));function r(l){return o(l.billable,l.billable+l.unbillable)}function o(l,e){return l&&e?(l/e*100).toFixed(0):0}}();
+    },{}]},{},["Focm"], null)
+  </textarea>
+  <h2>Step 2: Ceate a bookmark</h2>
+  <p>Right click in your browser's bookmarks toolbar and click "Add Page".</p>
+  <p>
+    <img class="add-bookmark" src="docs/screenshot-2.png" alt="The bookmarks toolbar right-click menu contains many items. Click the 'Add Page' option." />
+  </p>
+  <p>Give the bookmarklet the name you want, and paste the JavaScript code into the URL field. Click the Save button.</p>
+  <p>
+    <img class="edit-bookmark" src="docs/screenshot-3.png" alt="The dialog box to edit a bookmark."  />
+  </p>
+  <h2>Step 3: Open the 10k tracker and click the bookmarklet</h2>
+  <img class="screenshot" src="docs/screenshot-1.jpg" alt="A screenshot of the 10k app showing the results of running the bookmarklet. An Alert window appears, listing your billable time for the week and for each day as a percentage" />
+
+
+  <script type="text/javascript">
+    function handleClick() {
+      const lol = document.getElementById('snippet')
+      lol.select();
+      document.execCommand('copy');
+    }
+  </script>
+</body>
+</html>
